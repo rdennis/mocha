@@ -89,17 +89,17 @@ module.exports = function (config) {
     if (env.TRAVIS) {
       console.error('Travis-CI detected');
       bundleDirpath = path.join(baseBundleDirpath, process.env.TRAVIS_BUILD_ID);
-        if (env.SAUCE_USERNAME && env.SAUCE_ACCESS_KEY) {
-          // correlate build/tunnel with Travis
-          sauceConfig = {
-            build: 'TRAVIS #' + env.TRAVIS_BUILD_NUMBER +
+      if (env.SAUCE_USERNAME && env.SAUCE_ACCESS_KEY) {
+        // correlate build/tunnel with Travis
+        sauceConfig = {
+          build: 'TRAVIS #' + env.TRAVIS_BUILD_NUMBER +
             ' (' + env.TRAVIS_BUILD_ID + ')',
           tunnelIdentifier: env.TRAVIS_JOB_NUMBER,
           startConnect: false
-          };
-          console.error('Configured SauceLabs');
-        } else {
-          console.error('No SauceLabs credentials present');
+        };
+        console.error('Configured SauceLabs');
+      } else {
+        console.error('No SauceLabs credentials present');
       }
     } else if (env.APPVEYOR) {
       console.error('AppVeyor detected');
@@ -160,11 +160,11 @@ function addSauceTests (cfg) {
     var browserName = browserParts[0];
     var version = browserParts[1];
     acc[browser] = {
-    base: 'SauceLabs',
+      base: 'SauceLabs',
       browserName: browserName,
       version: version,
       platform: platform
-  };
+    };
     return acc;
   }, {});
 
