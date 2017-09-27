@@ -4,7 +4,6 @@ var fs = require('fs');
 var path = require('path');
 var mkdirp = require('mkdirp');
 var baseBundleDirpath = path.join(__dirname, '.karma');
-var osName = require('os-name');
 
 module.exports = function (config) {
   var bundleDirpath;
@@ -13,15 +12,6 @@ module.exports = function (config) {
       'browserify',
       'expect',
       'mocha'
-    ],
-    plugins: [
-      'karma-browserify',
-      'karma-chrome-launcher',
-      'karma-phantomjs-launcher',
-      'karma-expect',
-      'karma-mocha',
-      'karma-spec-reporter',
-      require('@coderbyheart/karma-sauce-launcher')
     ],
     files: [
       // we use the BDD interface for all of the tests that
@@ -50,7 +40,7 @@ module.exports = function (config) {
     },
     reporters: ['spec'],
     colors: true,
-    browsers: [osName() === 'macOS Sierra' ? 'Chrome' : 'PhantomJS'], // This is the default browser to run, locally
+    browsers: ['PhantomJS'],
     logLevel: config.LOG_INFO,
     client: {
       mocha: {
